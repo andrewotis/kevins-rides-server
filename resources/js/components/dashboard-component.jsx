@@ -9,7 +9,7 @@ import {
 import { Bar, Line } from 'react-chartjs-2';
 import { FaBox, FaCog, FaShoppingCart, FaUsers } from 'react-icons/fa';
 import { barChartData, lineChartData } from '../assets/chartData';
-import Card from './Card';
+import Card from './card';
 
 ChartJS.register(
     LineElement,

@@ -1,6 +1,6 @@
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
-import ThemeContextProvider from '../context/ThemeContextProvider';
+import Navbar from '../components/navbar';
+import Sidebar from '../components/sidebar';
+import ThemeContextProvider from '../context/theme-context-provider';
 
 const Layout = ({ children }) => {
     return (

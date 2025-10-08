@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { IoLogOut } from 'react-icons/io5';
-import { ThemeContext } from '../context/ThemeContextProvider';
+import { ThemeContext } from '../context/theme-context-provider';
 
 const Navbar = ({ pageTitle }) => {
     const { theme, toggleTheme } = useContext(ThemeContext);

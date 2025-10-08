@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\TestController;
 
-Route::inertia('/', 'Dashboard')->name('dashboard');
+Route::inertia('/', 'dashboard')->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {

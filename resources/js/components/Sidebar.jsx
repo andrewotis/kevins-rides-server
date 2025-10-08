@@ -4,7 +4,7 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { HiBellAlert } from "react-icons/hi2";
 import { MdDashboard } from 'react-icons/md';
 import { IoSettings } from "react-icons/io5";
-import SidebarItem from './SidebarItem';
+import SidebarItem from './sidebar-item';
 
 const Sidebar = () => {
     return (
