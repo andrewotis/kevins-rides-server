@@ -1,5 +1,5 @@
 import { AiFillDashboard } from 'react-icons/ai';
-import { FaCarAlt } from 'react-icons/fa';
+import { FaCarAlt, FaUsers } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { HiBellAlert } from "react-icons/hi2";
 import { MdDashboard } from 'react-icons/md';
@@ -13,10 +13,11 @@ const Sidebar = () => {
                 Kevin's Rides
             </h1>
             <ul className="mt-5 flex flex-col text-xl">
-                <SidebarItem icon={<MdDashboard />}>Dashboard</SidebarItem>
-                <SidebarItem icon={<FaCarAlt />}>Rides</SidebarItem>
+                <SidebarItem href="/" icon={<MdDashboard />}>Dashboard</SidebarItem>
+                <SidebarItem href="/rides" icon={<FaCarAlt />}>Rides</SidebarItem>
+                <SidebarItem icon={<FaUsers />}>Riders</SidebarItem>
                 <SidebarItem icon={<AiFillDashboard />}>Drivers</SidebarItem>
-                <SidebarItem icon={<FaLocationDot />}>
+                <SidebarItem href="/pickup-locations" icon={<FaLocationDot />}>
                     Pickup Locations
                 </SidebarItem>
                 <SidebarItem icon={<HiBellAlert />}>Notifications</SidebarItem>

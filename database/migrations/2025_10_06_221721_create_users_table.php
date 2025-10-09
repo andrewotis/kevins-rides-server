@@ -21,6 +21,7 @@ return new class extends Migration
             $table->dateTime('email_verified_at')->nullable();
             $table->dateTime('phone_verified_at')->nullable();
             $table->boolean('active')->default(1);
+            $table->text('remember_token')->nullable();
             $table->dateTime('updated_at');
             $table->dateTime('created_at');
             $table->softDeletes();
