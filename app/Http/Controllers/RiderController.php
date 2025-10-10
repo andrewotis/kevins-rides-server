@@ -63,6 +63,9 @@ class RiderController extends Controller
     {
         $rider = Rider::find($id);
         $rider->delete();
-        return $this->index();
+        return Inertia::render('riders/riders', [
+            'riders' => Rider::whereNull('deleted_at')->get(),
+        ]);
+
     }
 }

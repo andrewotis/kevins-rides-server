@@ -8,19 +8,17 @@ const DeleteUser = ({
     selectedUser,
     selectedUserType = 'User',
 }) => {
-    const handleConfirm = (_) => {
+    const handleConfirm = () => {
         router.delete(
             `/${selectedUserType.toLowerCase()}s/${selectedUser.id}`,
-            {},
             {
                 onSuccess: () => {
-                    setDeleteModalOpen(false);
-                    router.visit(
-                        route(`${selectedUserType.toLowerCase()}s.index`),
-                        {
-                            preserveState: false,
-                        },
-                    );
+                    setDeleteModalOpen(false); // close modal
+                    router.visit('/riders', {
+                        preserveState: false,
+                        preserveScroll: true,
+                        only: ['riders'], // optional: limit what props to reload
+                    });
                 },
             },
         );
