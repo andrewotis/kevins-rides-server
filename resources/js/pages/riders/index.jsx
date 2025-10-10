@@ -139,7 +139,11 @@ const RidersIndex = ({
                                     >
                                         Reset Password
                                     </DropdownOption>
-                                    <DropdownOption>Delete</DropdownOption>
+                                    <DropdownOption
+                                        onClick={() => openDeleteModal(row)}
+                                    >
+                                        Delete
+                                    </DropdownOption>
                                 </Dropdown>
                             </td>
                         </tr>

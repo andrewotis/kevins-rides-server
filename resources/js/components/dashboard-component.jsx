@@ -8,6 +8,7 @@ import {
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import { FaBox, FaCog, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import { FaCommentDollar } from "react-icons/fa6";
 import { barChartData, lineChartData } from '../assets/chartData';
 import Card from './card';
 
@@ -28,13 +29,13 @@ const ChartComponent = ({ label, chart }) => {
     );
 };
 
-const DashboardComponent = () => {
+const DashboardComponent = ({ activeRiders, inactiveRiders }) => {
     return (
         <div className="grow p-8">
             <h2 className="mb-4 text-2xl">Dashboard</h2>
             <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card icon={<FaShoppingCart />} title="Riders" value="140" />
-                <Card icon={<FaBox />} title="Drivers" value="120" />
+                <Card icon={<FaUsers />} title="Active Riders" value={activeRiders.length == 0 ? "0" : activeRiders} />
+                <Card icon={<FaCommentDollar />} title="Inactive Riders" value={inactiveRiders.length == 0 ? "0" : inactiveRiders} />
                 <Card icon={<FaUsers />} title="Users" value="45" />
                 <Card icon={<FaCog />} title="Settings" value="11" />
             </div>

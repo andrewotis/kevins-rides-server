@@ -16,6 +16,15 @@ class RiderController extends Controller
         ]);
     }
 
+    public function updatePassword(Request $request, $id)
+    {
+        $rider = Rider::find($id);
+        
+        $rider->password = Hash::make($request->input('password'));
+        $rider->save();
+        return redirect()->back();
+    }
+
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -52,8 +61,8 @@ class RiderController extends Controller
 
     public function delete($id)
     {
-        $location = Rider::find($id);
-        $location->delete();
-        return redirect()->back();
+        $rider = Rider::find($id);
+        $rider->delete();
+        return $this->index();
     }
 }

@@ -1,22 +1,58 @@
-import { useState } from 'react';
-import { Modal, ModalTitle, ModalBody } from '../../components/modal';
+import { router } from '@inertiajs/react';
+import Button from '../../components/button';
+import { Modal, ModalBody, ModalTitle } from '../../components/modal';
 
-const ResetPassword = ({
-    resetPasswordModalOpen,
-    setResetPasswordModalOpen,
+const DeleteUser = ({
+    deleteModalOpen,
+    setDeleteModalOpen,
     selectedUser,
-    selectedUserType="User"
+    selectedUserType = 'User',
 }) => {
-    const [confirmed, setConfirmed] = useState(false);
+    const handleConfirm = (_) => {
+        router.delete(
+            `/${selectedUserType.toLowerCase()}s/${selectedUser.id}`,
+            {},
+            {
+                onSuccess: () => {
+                    setDeleteModalOpen(false);
+                    router.visit(
+                        route(`${selectedUserType.toLowerCase()}s.index`),
+                        {
+                            preserveState: false,
+                        },
+                    );
+                },
+            },
+        );
+    };
 
     return (
-        <Modal isOpen={resetPasswordModalOpen}>
+        <Modal isOpen={deleteModalOpen}>
             <div className="w-full max-w-md rounded bg-white p-6 shadow dark:border-gray-600 dark:bg-gray-800 dark:text-white">
                 <ModalTitle title={`Delete ${selectedUserType}`} />
-                {!confirmed && <ModalBody>Are you sure you want to delete this {selectedUserType.toLowerCase()}?</ModalBody>}
+                <ModalBody>
+                    Are you sure you want to delete this{' '}
+                    {selectedUserType.toLowerCase()}?
+                </ModalBody>
+                <div className="flex justify-end space-x-2">
+                    <Button
+                        type="button"
+                        onClick={() => setDeleteModalOpen(false)}
+                        className="rounded bg-gray-300 px-4 py-2"
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        type="submit"
+                        onClick={() => handleConfirm()}
+                        className="rounded bg-red-600 px-4 py-2 text-white dark:bg-red-600 dark:text-white"
+                    >
+                        Delete
+                    </Button>
+                </div>
             </div>
         </Modal>
     );
 };
 
-export default ResetPassword;
+export default DeleteUser;

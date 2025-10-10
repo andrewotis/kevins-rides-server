@@ -6,9 +6,15 @@ export default function Dashboard() {
     const { props } = usePage();
     const user = props.auth?.user;
 
+    const activeRiders = props.activeRiders || [];
+    const inactiveRiders = props.inactiveRiders || [];
+
     return (
         <Layout user={user} currentPage="dashboard">
-            <DashboardComponent />
+            <DashboardComponent
+                activeRiders={activeRiders}
+                inactiveRiders={inactiveRiders}
+            />
         </Layout>
     );
 }

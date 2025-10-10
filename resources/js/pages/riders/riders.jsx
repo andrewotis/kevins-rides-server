@@ -3,8 +3,9 @@ import { useState } from 'react';
 import RidersIndex from '.';
 import Button from '../../components/button';
 import Layout from '../../components/layout';
-import RegisterRider from './register';
+import DeleteUser from './delete';
 import EditRider from './edit';
+import RegisterRider from './register';
 import ResetPassword from './reset-password';
 
 export default function Riders() {
@@ -16,8 +17,8 @@ export default function Riders() {
     const [registerModalOpen, setRegisterModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [resetPasswordModalOpen, setResetPasswordModalOpen] = useState(false);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedRider, setSelectedRider] = useState(null);
-    
 
     const openEditModal = (rider) => {
         setSelectedRider(rider);
@@ -27,11 +28,11 @@ export default function Riders() {
     const openResetPasswordModal = (rider) => {
         setSelectedRider(rider);
         setResetPasswordModalOpen(true);
-    }
+    };
 
     const openDeleteModal = (rider) => {
-        // setSelectedLocation(location);
-        // setDeleteModalOpen(true);
+        setSelectedRider(rider);
+        setDeleteModalOpen(true);
     };
 
     return (
@@ -56,7 +57,7 @@ export default function Riders() {
                     setRegisterModalOpen={setRegisterModalOpen}
                 />
 
-                <EditRider 
+                <EditRider
                     editModalOpen={editModalOpen}
                     setEditModalOpen={setEditModalOpen}
                     selectedRider={selectedRider}
@@ -66,7 +67,14 @@ export default function Riders() {
                     resetPasswordModalOpen={resetPasswordModalOpen}
                     setResetPasswordModalOpen={setResetPasswordModalOpen}
                     selectedUser={selectedRider}
-                    selectedUserType='Rider'
+                    selectedUserType="Rider"
+                />
+
+                <DeleteUser
+                    deleteModalOpen={deleteModalOpen}
+                    setDeleteModalOpen={setDeleteModalOpen}
+                    selectedUser={selectedRider}
+                    selectedUserType="Rider"
                 />
             </div>
         </Layout>
