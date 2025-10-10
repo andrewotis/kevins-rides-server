@@ -31,7 +31,7 @@ class PickupLocationController extends Controller
 
     public function index()
     {
-        return Inertia::render('pickup-locations', [
+        return Inertia::render('pickup-locations/pickup-locations', [
             'locations' => PickupLocation::whereNull('deleted_at')->get(),
         ]);
     }

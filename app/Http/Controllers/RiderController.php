@@ -3,8 +3,57 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Models\Rider;
+use Illuminate\Support\Facades\Hash;
 
 class RiderController extends Controller
 {
-    //
+    public function index()
+    {
+        return Inertia::render('riders/riders', [
+            'riders' => Rider::whereNull('deleted_at')->get(),
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        $data = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^\(\d{3}\) \d{3}-\d{4}$/'
+            ],
+            'password' => 'required|string|max:255',
+        ]);
+
+        $data['password'] = Hash::make($request->input('password'));
+
+        Rider::create($data);
+        return redirect()->back();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $rider = Rider::find($id);
+        $rider->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'active' => $request->input('active'),
+        ]);
+        return $this->index();
+    }
+
+    public function delete($id)
+    {
+        $location = Rider::find($id);
+        $location->delete();
+        return redirect()->back();
+    }
 }

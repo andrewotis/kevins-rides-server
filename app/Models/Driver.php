@@ -11,6 +11,11 @@ class Driver extends Model
 
     protected $guarded = ['id'];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function notifications()
     {
         return $this->morphMany(Notification::class, 'notifiable');

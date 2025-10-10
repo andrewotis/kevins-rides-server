@@ -7,7 +7,7 @@ export default function Dashboard() {
     const user = props.auth?.user;
 
     return (
-        <Layout user={user}>
+        <Layout user={user} currentPage="dashboard">
             <DashboardComponent />
         </Layout>
     );
