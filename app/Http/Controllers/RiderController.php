@@ -19,7 +19,7 @@ class RiderController extends Controller
     public function updatePassword(Request $request, $id)
     {
         $rider = Rider::find($id);
-        
+
         $rider->password = Hash::make($request->input('password'));
         $rider->save();
         return redirect()->back();
@@ -43,7 +43,9 @@ class RiderController extends Controller
         $data['password'] = Hash::make($request->input('password'));
 
         Rider::create($data);
-        return redirect()->back();
+        return redirect()->route('riders.index');
+
+
     }
 
     public function update(Request $request, $id)
@@ -66,6 +68,5 @@ class RiderController extends Controller
         return Inertia::render('riders/riders', [
             'riders' => Rider::whereNull('deleted_at')->get(),
         ]);
-
     }
 }

@@ -7,13 +7,14 @@ import { Modal, ModalTitle } from '../../components/modal';
 import { generatePassword } from '../../passwords';
 import { copyToClipboard, formatPhoneNumber } from '../../tools';
 
-const RegisterRider = ({ registerModalOpen, setRegisterModalOpen }) => {
+const RegisterDriver = ({ registerModalOpen, setRegisterModalOpen }) => {
     const [password, setPassword] = useState(null);
     const [data, setData] = useState({
         first_name: '',
         last_name: '',
         email: '',
         phone: '',
+        vehicle_capacity: '',
         password: password,
     });
 
@@ -32,6 +33,7 @@ const RegisterRider = ({ registerModalOpen, setRegisterModalOpen }) => {
             last_name: '',
             email: '',
             phone: '',
+            vehicle_capacity: '',
             password: p,
         });
     };
@@ -43,13 +45,13 @@ const RegisterRider = ({ registerModalOpen, setRegisterModalOpen }) => {
     };
 
     const handleRegister = () => {
-        router.post('/riders', data, {
+        router.post('/drivers', data, {
             onSuccess: () => {
                 setRegisterModalOpen(false);
-                router.visit('/riders', {
+                router.visit('/drivers', {
                     preserveScroll: true,
                     preserveState: false,
-                    only: ['riders'], // 🔁 tell Inertia to refetch just this prop
+                    only: ['drivers'], // 🔁 tell Inertia to refetch just this prop
                     replace: true, // 🔁 optional but keeps navigation history clean
                 });
             },
@@ -60,7 +62,7 @@ const RegisterRider = ({ registerModalOpen, setRegisterModalOpen }) => {
         <Modal isOpen={registerModalOpen}>
             <div>
                 <div className="w-full max-w-md rounded bg-white p-6 shadow dark:border-gray-600 dark:bg-gray-800 dark:text-white">
-                    <ModalTitle title="Register New Rider" />
+                    <ModalTitle title="Register New Driver" />
                     <Input
                         value={data.first_name}
                         onChange={(e) =>
@@ -91,6 +93,17 @@ const RegisterRider = ({ registerModalOpen, setRegisterModalOpen }) => {
                         placeHolder="Phone"
                         required
                     />
+                    <Input
+                        value={data.vehicle_capacity}
+                        type="number"
+                        onChange={(e) =>
+                            setData({ ...data, vehicle_capacity: e.target.value })
+                        }
+                        placeHolder="Vehicle Capacity"
+                        required
+                        min={1}
+                        max={12}
+                    />
                     <div
                         onClick={() => copyToClipboard(password)}
                         className="mb-4 cursor-pointer"
@@ -114,4 +127,4 @@ const RegisterRider = ({ registerModalOpen, setRegisterModalOpen }) => {
     );
 };
 
-export default RegisterRider;
+export default RegisterDriver;

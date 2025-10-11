@@ -7,7 +7,7 @@ const Layout = ({ children, user, currentPage }) => {
         <ThemeContextProvider>
             <div className="flex">
                 <Sidebar currentPage={currentPage} />
-                <div className="ml-16 flex flex-col min-h-screen w-full bg-gray-100 text-gray-900 md:ml-64 lg:h-screen dark:bg-gray-900 dark:text-white">
+                <div className="ml-16 flex flex-col min-h-screen w-full bg-gray-100 text-gray-900 md:ml-64 dark:bg-gray-900 dark:text-white">
                     <Navbar user={user} />
                     <div>{children}</div>
                 </div>

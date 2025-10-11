@@ -36,6 +36,7 @@ const Sidebar = ({ currentPage }) => {
                 </SidebarItem>
                 <SidebarItem
                     selected={currentPage == 'drivers'}
+                    href="/drivers"
                     icon={<AiFillDashboard />}
                 >
                     Drivers

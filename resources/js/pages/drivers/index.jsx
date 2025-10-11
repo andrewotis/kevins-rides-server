@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Dropdown, DropdownOption } from '../../components/dropdown';
 
-const RidersIndex = ({
-    riders,
+const DriversIndex = ({
+    drivers,
     openEditModal,
     openResetPasswordModal,
     openDeleteModal,
 }) => {
-    const [data, setData] = useState(riders);
+    const [data, setData] = useState(drivers);
     const [filter, setFilter] = useState('');
     const [sortKey, setSortKey] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
@@ -16,8 +16,8 @@ const RidersIndex = ({
     const itemsPerPage = 10;
     
     useEffect(() => {
-        setData(riders);
-    }, [riders]);
+        setData(drivers);
+    }, [drivers]);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -195,4 +195,4 @@ const RidersIndex = ({
     );
 };
 
-export default RidersIndex;
+export default DriversIndex;

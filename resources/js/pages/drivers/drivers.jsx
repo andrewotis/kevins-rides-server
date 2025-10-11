@@ -1,14 +1,14 @@
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import RidersIndex from '.';
+import DriversIndex from '.';
 import Button from '../../components/button';
 import Layout from '../../components/layout';
-import DeleteUser from './delete';
-import EditRider from './edit';
-import RegisterRider from './register';
-import ResetPassword from './reset-password';
+import DeleteUser from '../riders/delete';
+import EditDriver from './edit';
+import RegisterDriver from './register';
+import ResetPassword from '../riders/reset-password';
 
-export default function Riders() {
+export default function Drivers() {
     const { props } = usePage();
     const user = props.auth?.user;
 
@@ -16,63 +16,63 @@ export default function Riders() {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [resetPasswordModalOpen, setResetPasswordModalOpen] = useState(false);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const [selectedRider, setSelectedRider] = useState(null);
+    const [selectedDriver, setSelectedDriver] = useState(null);
 
-    const openEditModal = (rider) => {
-        setSelectedRider(rider);
+    const openEditModal = (driver) => {
+        setSelectedDriver(driver);
         setEditModalOpen(true);
     };
 
-    const openResetPasswordModal = (rider) => {
-        setSelectedRider(rider);
+    const openResetPasswordModal = (driver) => {
+        setSelectedDriver(driver);
         setResetPasswordModalOpen(true);
     };
 
-    const openDeleteModal = (rider) => {
-        setSelectedRider(rider);
+    const openDeleteModal = (driver) => {
+        setSelectedDriver(driver);
         setDeleteModalOpen(true);
     };
 
     return (
-        <Layout user={user} currentPage="riders">
+        <Layout user={user} currentPage="drivers">
             <div className="flex-grow p-8">
-                <h2 className="mb-4 text-2xl">Riders</h2>
+                <h2 className="mb-4 text-2xl">Drivers</h2>
                 <ul className="space-y-4">
                     <Button onClick={() => setRegisterModalOpen(true)}>
-                        Register Rider
+                        Register Driver
                     </Button>
 
-                    <RidersIndex
-                        riders={props.riders || []}
+                    <DriversIndex
+                        drivers={props.drivers || []}
                         openEditModal={openEditModal}
                         openResetPasswordModal={openResetPasswordModal}
                         openDeleteModal={openDeleteModal}
                     />
                 </ul>
 
-                <RegisterRider
+                <RegisterDriver
                     registerModalOpen={registerModalOpen}
                     setRegisterModalOpen={setRegisterModalOpen}
                 />
 
-                <EditRider
+                <EditDriver
                     editModalOpen={editModalOpen}
                     setEditModalOpen={setEditModalOpen}
-                    selectedRider={selectedRider}
+                    selectedDriver={selectedDriver}
                 />
 
                 <ResetPassword
                     resetPasswordModalOpen={resetPasswordModalOpen}
                     setResetPasswordModalOpen={setResetPasswordModalOpen}
-                    selectedUser={selectedRider}
-                    selectedUserType="Rider"
+                    selectedUser={selectedDriver}
+                    selectedUserType="Driver"
                 />
 
                 <DeleteUser
                     deleteModalOpen={deleteModalOpen}
                     setDeleteModalOpen={setDeleteModalOpen}
-                    selectedUser={selectedRider}
-                    selectedUserType="Rider"
+                    selectedUser={selectedDriver}
+                    selectedUserType="Driver"
                 />
             </div>
         </Layout>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('first_name');
             $table->text('last_name');
+            $table->integer('vehicle_capacity');
             $table->text('email');
             $table->text('password');
             $table->text('phone');
