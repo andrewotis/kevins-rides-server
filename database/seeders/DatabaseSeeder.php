@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->createAdmin();
+        $this->call(RidersAndDriversSeeder::class);
     }
 
     protected function createAdmin()

@@ -38,7 +38,7 @@ const EditDriver = ({ editModalOpen, setEditModalOpen, selectedDriver }) => {
                 onSubmit={handleEdit}
                 className="w-full max-w-md rounded bg-white p-6 shadow dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             >
-                <ModalTitle title="Edit DRiver" />
+                <ModalTitle title="Edit Driver" />
                 <Input
                     value={editDriverData.first_name}
                     onChange={(e) =>
@@ -70,6 +70,17 @@ const EditDriver = ({ editModalOpen, setEditModalOpen, selectedDriver }) => {
                     value={editDriverData.phone}
                     onChange={handlePhoneChange}
                 />
+                <Input
+                        value={editDriverData.vehicle_capacity}
+                        type="number"
+                        onChange={(e) =>
+                            setData({ ...editDriverData, vehicle_capacity: e.target.value })
+                        }
+                        placeHolder="Vehicle Capacity"
+                        required
+                        min={1}
+                        max={12}
+                    />
 
                 <Switch
                     label="Account Active"
