@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Location;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->createAdmin();
+        $this->createLocations();
         $this->call(RidersAndDriversSeeder::class);
     }
 
@@ -27,5 +29,20 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'phone' => '+15207599225'
         ]);
+    }
+
+    protected function createLocations()
+    {
+        $locations = [
+            'Airport',
+            'Game Hall',
+            'Library Rear Entrance',
+            'Another Place',
+            'Mcnutt Quad',
+        ];
+
+        foreach($locations as $location) {
+            Location::create(['description' => $location]);
+        }
     }
 }

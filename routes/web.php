@@ -2,20 +2,20 @@
 
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PickupLocationController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\RiderController;
 use App\Http\Controllers\DriverController;
 
 // Fortify is handling login routes
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard']);
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    // pickup locations
-    Route::get('/pickup-locations', [PickupLocationController::class, 'index'])->name('pickup-locations.index');
-    Route::put('/pickup-locations/{id}', [PickupLocationController::class, 'update'])->name('pickup-locations.update');
-    Route::delete('/pickup-locations/{id}', [PickupLocationController::class, 'delete'])->name('pickup-locations.delete');
-    Route::post('/pickup-locations', [PickupLocationController::class, 'store'])->name('pickup-locations.store');
+    // locations
+    Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::put('/locations/{id}', [LocationController::class, 'update'])->name('locations.update');
+    Route::delete('/locations/{id}', [LocationController::class, 'delete'])->name('locations.delete');
+    Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
 
     // riders
     Route::get('/riders', [RiderController::class, 'index'])->name('riders.index');

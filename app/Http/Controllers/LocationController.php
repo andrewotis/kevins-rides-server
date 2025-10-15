@@ -4,35 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\PickupLocation;
+use App\Models\Location;
 
-class PickupLocationController extends Controller
+class LocationController extends Controller
 {
     public function store(Request $request)
     {
         $request->validate(['description' => 'required|string|max:255']);
-        PickupLocation::create(['description' => $request->description]);
+        Location::create(['description' => $request->description]);
         return redirect()->back();
     }
 
     public function update(Request $request, $id)
     {
-        $pickupLocation = PickupLocation::find($id);
-        $pickupLocation->update($request->input());
+        $Location = Location::find($id);
+        $Location->update($request->input());
         return redirect()->back();
     }
 
     public function delete($id)
     {
-        $location = PickupLocation::find($id);
+        $location = Location::find($id);
         $location->delete();
         return redirect()->back();
     }
 
     public function index()
     {
-        return Inertia::render('pickup-locations/pickup-locations', [
-            'locations' => PickupLocation::whereNull('deleted_at')->get(),
+        return Inertia::render('locations/locations', [
+            'locations' => Location::whereNull('deleted_at')->get(),
         ]);
     }
 

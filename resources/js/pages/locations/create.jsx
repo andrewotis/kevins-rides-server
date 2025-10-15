@@ -3,13 +3,13 @@ import { router } from '@inertiajs/react';
 import Button from '../../components/button';
 import { Modal, ModalTitle } from '../../components/modal';
 
-const CreatePickupLocation = ({ createModalOpen, setCreateModalOpen }) => {
+const CreateLocation = ({ createModalOpen, setCreateModalOpen }) => {
     const [newDescription, setNewDescription] = useState('');
 
     const handleCreate = (e) => {
         e.preventDefault();
         router.post(
-            '/pickup-locations',
+            '/locations',
             { description: newDescription },
             {
                 onSuccess: () => {
@@ -26,7 +26,7 @@ const CreatePickupLocation = ({ createModalOpen, setCreateModalOpen }) => {
                 onSubmit={handleCreate}
                 className="w-full max-w-md rounded bg-white p-6 shadow dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             >
-                <ModalTitle title="New Pickup Location" />
+                <ModalTitle title="New Location" />
                 <input
                     type="text"
                     value={newDescription}
@@ -48,4 +48,4 @@ const CreatePickupLocation = ({ createModalOpen, setCreateModalOpen }) => {
     );
 };
 
-export default CreatePickupLocation;
+export default CreateLocation;

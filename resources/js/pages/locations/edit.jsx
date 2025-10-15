@@ -2,11 +2,11 @@ import { router } from '@inertiajs/react';
 import Button from '../../components/button';
 import { Modal, ModalTitle } from '../../components/modal';
 
-const EditPickupLocation = ({ editModalOpen, setEditModalOpen, editDescription, setEditDescription, selectedLocation }) => {
+const EditLocation = ({ editModalOpen, setEditModalOpen, editDescription, setEditDescription, selectedLocation }) => {
     const handleEdit = (e) => {
         e.preventDefault();
         router.put(
-            `/pickup-locations/${selectedLocation.id}`,
+            `/locations/${selectedLocation.id}`,
             {
                 description: editDescription,
             },
@@ -22,7 +22,7 @@ const EditPickupLocation = ({ editModalOpen, setEditModalOpen, editDescription, 
                 onSubmit={handleEdit}
                 className="w-full max-w-md rounded bg-white p-6 shadow dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             >
-                <ModalTitle title="Edit Pickup Location" />
+                <ModalTitle title="Edit Location" />
                 <input
                     type="text"
                     value={editDescription}
@@ -50,4 +50,4 @@ const EditPickupLocation = ({ editModalOpen, setEditModalOpen, editDescription, 
     );
 };
 
-export default EditPickupLocation;
+export default EditLocation;

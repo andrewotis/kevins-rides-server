@@ -2,12 +2,12 @@ import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import Button from '../../components/button';
 import Layout from '../../components/layout';
-import PickupLocationsIndex from '.';
-import CreatePickupLocation from './create';
-import EditPickupLocation from './edit';
-import DeletePickupLocation from './delete';
+import LocationsIndex from '.';
+import CreateLocation from './create';
+import EditLocation from './edit';
+import DeleteLocation from './delete';
 
-export default function PickupLocations() {
+export default function Locations() {
     const { props } = usePage();
     const user = props.auth?.user;
     const locations = props.locations || [];
@@ -31,27 +31,27 @@ export default function PickupLocations() {
     };    
 
     return (
-        <Layout user={user} currentPage="pickupLocations">
+        <Layout user={user} currentPage="Locations">
             <div className="flex-grow p-8">
-                <h2 className="mb-4 text-2xl">Pickup Locations</h2>
+                <h2 className="mb-4 text-2xl">Locations</h2>
                 <ul className="space-y-4">
                     <Button onClick={() => setCreateModalOpen(true)}>
-                        Create Pickup Location
+                        Create Location
                     </Button>
 
-                    <PickupLocationsIndex
+                    <LocationsIndex
                         locations={locations}
                         openEditModal={openEditModal}
                         openDeleteModal={openDeleteModal}
                     />
                 </ul>
 
-                <CreatePickupLocation
+                <CreateLocation
                     createModalOpen={createModalOpen}
                     setCreateModalOpen={setCreateModalOpen}
                 />
 
-                <EditPickupLocation
+                <EditLocation
                     editModalOpen={editModalOpen}
                     setEditModalOpen={setEditModalOpen}
                     editDescription={editDescription}
@@ -59,7 +59,7 @@ export default function PickupLocations() {
                     selectedLocation={selectedLocation}
                 />
 
-                <DeletePickupLocation 
+                <DeleteLocation 
                     deleteModalOpen={deleteModalOpen}
                     setDeleteModalOpen={setDeleteModalOpen}
                     selectedLocation={selectedLocation}

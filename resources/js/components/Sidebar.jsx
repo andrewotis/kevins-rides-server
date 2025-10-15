@@ -42,11 +42,11 @@ const Sidebar = ({ currentPage }) => {
                     Drivers
                 </SidebarItem>
                 <SidebarItem
-                    selected={currentPage == 'pickupLocations'}
-                    href="/pickup-locations"
+                    selected={currentPage == 'locations'}
+                    href="/locations"
                     icon={<FaLocationDot />}
                 >
-                    Pickup Locations
+                    Locations
                 </SidebarItem>
                 <SidebarItem
                     selected={currentPage == 'notifications'}

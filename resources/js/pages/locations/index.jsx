@@ -1,6 +1,6 @@
 import Button from '../../components/button';
 
-const PickupLocationsIndex = ({ locations, openEditModal, openDeleteModal }) => {
+const LocationsIndex = ({ locations, openEditModal, openDeleteModal }) => {
     return locations.map((location) => (
         <li
             key={location.id}
@@ -25,4 +25,4 @@ const PickupLocationsIndex = ({ locations, openEditModal, openDeleteModal }) => 
     ));
 };
 
-export default PickupLocationsIndex;
+export default LocationsIndex;

@@ -2,23 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
-class Rider extends Model
+class Rider extends Authenticatable
 {
-    use SoftDeletes;
+    use HasApiTokens, SoftDeletes;
 
     protected $guarded = ['id'];
 
     protected $hidden = [
         'password',
-        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
+        'two_factor_confirmed_at',
+        'email_verified_at',
+        'phone_verified_at'
     ];
 
     public function notifications()
     {
         return $this->morphMany(Notification::class, 'notifiable');
     }
-
 }
