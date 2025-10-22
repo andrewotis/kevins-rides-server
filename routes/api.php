@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AirlineAPIController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RiderAPIController;
 use App\Http\Controllers\API\DriverAPIController;
@@ -20,7 +21,8 @@ Route::post('/drivers/login', [AuthController::class, 'driverLogin']);
 
 
 // ----------------------------------------------------------------------------- RIDES --------------------------------------------------------------- //
-Route::get('/locations', [RideAPIController::class, 'Locations']);
+Route::get('/locations', [RideAPIController::class, 'locations']);
+Route::get('/airlines', [AirlineAPIController::class, 'getAirlines']);
 Route::post('/rides', [RideAPIController::class, 'store']);
 
 

@@ -3,16 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ride extends Model
 {
-    use SoftDeletes;
-
     protected $guarded = ['id'];
-    protected $appends = ['scheduled_date', 'scheduled_time'];
     protected $hidden = ['deleted_at'];
 
+    public function rider()
+    {
+        return $this->belongsTo(Rider::class);
+    }
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
+
+    public function airline()
+    {
+        return $this->belongsTo(Airline::class);
+    }
 
     public function pickupLocation()
     {
@@ -22,15 +32,5 @@ class Ride extends Model
     public function dropoffLocation()
     {
         return $this->belongsTo(Location::class);
-    }
-
-    public function getScheduledDateAttribute()
-    {
-        return \Carbon\Carbon::parse($this->scheduled_at)->toDateString(); // "2025-10-15"
-    }
-
-    public function getScheduledTimeAttribute()
-    {
-        return \Carbon\Carbon::parse($this->scheduled_at)->format('H:i'); // "13:30"
     }
 }

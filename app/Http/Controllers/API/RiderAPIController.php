@@ -12,6 +12,6 @@ class RiderAPIController extends Controller
     public function getRides(Request $request, $rider_id)
     {
         // TODO - verify the $request->bearerToken() is for this $user_id
-        return Ride::with(['pickuplocation', 'dropoffLocation'])->where('rider_id', $rider_id)->get();
+        return Ride::with(['pickuplocation', 'dropoffLocation', 'airline'])->where('rider_id', $rider_id)->get();
     }
 }

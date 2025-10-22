@@ -21,7 +21,10 @@ class RideAPIController extends Controller
             'rider_id' => 'required',
             'pickup_location_id' => 'required',
             'dropoff_location_id' => 'required',
-            'scheduled_at' => 'required',
+            'date_of_travel' => 'required',
+            'airline_id' => 'required',
+            'flight_number' => 'required',
+            'flight_time' => 'required',
         ]);
 
         return Ride::create($request->input());

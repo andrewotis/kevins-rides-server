@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Airline;
 use App\Models\Location;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,6 +19,40 @@ class DatabaseSeeder extends Seeder
         $this->createAdmin();
         $this->createLocations();
         $this->call(RidersAndDriversSeeder::class);
+        $this->createAirlines();
+    }
+
+    protected function createAirlines()
+    {
+        $usDomesticAirlines = [
+            "Alaska Airlines",
+            "Allegiant Air",
+            "American Airlines",
+            "Avelo Airlines",
+            "Breeze Airways",
+            "Cape Air",
+            "Contour Airlines",
+            "Delta Air Lines",
+            "Elite Airways",
+            "Frontier Airlines",
+            "Hawaiian Airlines",
+            "JetBlue Airways",
+            "Southern Airways Express",
+            "Southwest Airlines",
+            "Spirit Airlines",
+            "Sun Country Airlines",
+            "United Airlines",
+            "Silver Airways",
+            "JSX",
+            "Ameriflight", // cargo + limited passenger
+            "Boutique Air",
+            "Ravn Alaska",
+            "Tradewind Aviation",
+        ];
+
+        foreach($usDomesticAirlines as $airline) {
+            Airline::create(['airline' => $airline]);
+        }
     }
 
     protected function createAdmin()
@@ -41,7 +76,7 @@ class DatabaseSeeder extends Seeder
             'Mcnutt Quad',
         ];
 
-        foreach($locations as $location) {
+        foreach ($locations as $location) {
             Location::create(['description' => $location]);
         }
     }
