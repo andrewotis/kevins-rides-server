@@ -6,6 +6,7 @@ use App\Http\Controllers\API\RiderAPIController;
 use App\Http\Controllers\API\DriverAPIController;
 use App\Http\Controllers\API\RideAPIController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
@@ -14,9 +15,29 @@ Route::get('/user', function (Request $request) {
 
 
 // -----------------------------------------------------------------------------  AUTH  --------------------------------------------------------------- //
-Route::post('/login', [AuthController::class, 'userLogin']);
-Route::post('/riders/login', [AuthController::class, 'riderLogin']);
-Route::post('/drivers/login', [AuthController::class, 'driverLogin']);
+Route::post('/backoffice/login', function (Request $request) {
+    if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
+        $request->session()->regenerate();
+        return response()->json(['message' => 'Logged in']);
+    }
+    return response()->json(['error' => 'Unauthorized'], 401);
+});
+
+Route::post('/rider/login', function (Request $request) {
+    if (Auth::guard('rider')->attempt($request->only('email', 'password'))) {
+        $request->session()->regenerate();
+        return response()->json(['message' => 'Logged in']);
+    }
+    return response()->json(['error' => 'Unauthorized'], 401);
+});
+
+Route::post('/driver/login', function (Request $request) {
+    if (Auth::guard('driver')->attempt($request->only('email', 'password'))) {
+        $request->session()->regenerate();
+        return response()->json(['message' => 'Logged in']);
+    }
+    return response()->json(['error' => 'Unauthorized'], 401);
+});
 
 
 
